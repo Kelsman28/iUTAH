@@ -1,4 +1,5 @@
 library(plyr)
+library(data.table)
 
 read.csv("C:/Users/Julie Kelso/Dropbox/LR_Datasheet")
 
@@ -15,6 +16,8 @@ Chla$DataValue <- as.numeric(Chla$DataValue)
 Chla$DataValue[Chla$DataValue > 20 ] = "NA"
 
 ValChla = merge(LRDatasheet, Chla, by=c("Date", "SiteCode"), all.y = TRUE)
+
+#average those rows that have multiple values 
 
 write.csv(ValChla, "ValChla.csv")
 getwd()
