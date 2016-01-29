@@ -1,4 +1,4 @@
-getwd()
+library(plyr)
 
 read.csv("C:/Users/Julie Kelso/Dropbox/LR_Datasheet")
 
@@ -6,13 +6,15 @@ LRDatasheet = read.csv("C:/Users/Julie Kelso/Desktop/Box Sync/GAMUT_Sampling/CSV
 
 Chla = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/Chl a/Chla.csv")
 
-colnames(LRDatasheet)
+Chla = Chla[-c(414:1048521),]
 
-ValChla = merge(LRDatasheet, Chla, by=c("Date", "SiteCode"))
+### convert data values to numeric  ####
+Chla$DataValue <- as.numeric(Chla$DataValue) 
 
-### remove duplicates ###
-done = NPOCTN[!duplicated(NPOCTN[c("Site", "DateCollected", "Analysis")]),]
-ValChla = ValChla(!duplicated(ValChla[c("Site", "DateCollected", "Analysis")]),)
+### remov outliers  ###
+Chla$DataValue[Chla$DataValue > 20 ] = "NA"
+
+ValChla = merge(LRDatasheet, Chla, by=c("Date", "SiteCode"), all.y = TRUE)
 
 write.csv(ValChla, "ValChla.csv")
 getwd()
