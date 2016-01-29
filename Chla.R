@@ -6,9 +6,9 @@ LRDatasheet = read.csv("C:/Users/Julie Kelso/Desktop/Box Sync/GAMUT_Sampling/CSV
 
 Chla = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/Chl a/Chla.csv")
 
-colnames(FPOMDIC)[c(3,4,5,8,9,10)] <- c("Watershed", "month", "DIC", "d13C", "d15N", "CtoN")
+colnames(LRDatasheet)
 
-ValChla = merge(LRDatasheet, Chla, by=c("Date"))
+ValChla = merge(LRDatasheet, Chla, by=c("Date", "SiteCode"))
 
 ### remove duplicates ###
 done = NPOCTN[!duplicated(NPOCTN[c("Site", "DateCollected", "Analysis")]),]
