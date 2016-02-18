@@ -51,7 +51,12 @@ SepH$NumericDate[SepH$Site.ID == "LR_MainSt_BA"] <- "140911"
 
 SepH$NumericDate[SepH$Site.ID %in% c("2300","3300","MillUp","MillDown","Cudahy")] = "140912"
 
+write.csv(SepCN, "SepCNfinal.csv")
+write.csv(SepH, "SepHfinal.csv")
+
 colnames(SepCN)[c(4,7)] <- c("Site.ID","NumericDate")
 colnames(SepH)[c(6)] <- c("Endmember")
 
-SepCNH = merge(SepCN, SepH, by=c("Endmember","Site.ID", "NumericDate"), Y = TRUE)
+SepCNH = merge(SepCN, SepH, by=c("Endmember","Site.ID", "NumericDate"), all.y = TRUE)
+
+## Now need to summarize SepCNfinal to average out duplicate records of CN values for JR and a few provo 
