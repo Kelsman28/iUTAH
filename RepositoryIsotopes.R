@@ -15,3 +15,6 @@ library(tidyr)
 
 SepCN = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/SepCN.csv")
 SepH = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/SepH.csv")
+
+colnames(SepCN)
+unique(SepCN$Date)
