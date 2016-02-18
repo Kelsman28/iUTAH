@@ -34,11 +34,15 @@ SepCN$Date[SepCN$Reach == "PR_CH_AA"] <- "140903"
 SepCN$Date[SepCN$Reach == "PR_LM_BA"] <- "140903"
 
 ### for all RB sites
-df$question[df$variable %in% c("var2", "var3", "var4")] <- "text"
-d
-SepCN$Date[SepCN$Reach %in% c("RB_1300E","RB_1300S","RB_ARBR_AA","RB_CG_BA","RB_FD_AA" , 
+SepCN$Date[SepCN$Reach %in% c("RB_1300E","RB_1300S","RB_ARBR_AA","RB_CG_BA","RB_FD_AA", 
                               "RB_KF_BA" ,"RB_RBG_BA","RB_TM")] = "140901"
 
+### Now change to correct dates or SepH
+SepH$NumericDate[SepH$Site.ID %in% c("RB_1300E","RB_1300S","RB_ARBR_AA","RB_CG_BA","RB_FD_AA", "RB_KF_BA" ,"RB_RBG_BA","RB_TM")] = "140901"
 
+SepH$Site.ID[SepH$Site.ID == "PR_SpringCreek600W500N"] <- "PR_SpringCreek"
 
-           
+SepH$NumericDate[SepH$Site.ID %in% c("PR_BJ_AA","PR_LM_BA","PR_SpringCreek","PR_SnakeCreekRR","PR_CH_AA","PR_Vivian","PR_CanyonViewPark")] = "140903"           
+SepCN$Date[SepCN$Reach == "LR_HWY252"] <- "140913"
+SepCN$Date[SepCN$Reach == "LR_MainSt_BA"] <- "140911"
+SepCN$Date[SepCN$Reach == "LR_TonyGrove_BA"] <- "140904"
