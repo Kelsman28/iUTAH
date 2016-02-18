@@ -43,6 +43,8 @@ SepH$NumericDate[SepH$Site.ID %in% c("RB_1300E","RB_1300S","RB_ARBR_AA","RB_CG_B
 SepH$Site.ID[SepH$Site.ID == "PR_SpringCreek600W500N"] <- "PR_SpringCreek"
 
 SepH$NumericDate[SepH$Site.ID %in% c("PR_BJ_AA","PR_LM_BA","PR_SpringCreek","PR_SnakeCreekRR","PR_CH_AA","PR_Vivian","PR_CanyonViewPark")] = "140903"           
-SepCN$Date[SepCN$Reach == "LR_HWY252"] <- "140913"
-SepCN$Date[SepCN$Reach == "LR_MainSt_BA"] <- "140911"
-SepCN$Date[SepCN$Reach == "LR_TonyGrove_BA"] <- "140904"
+SepH$NumericDate[SepH$Site.ID == "LR_HWY252"] <- "140913"
+SepH$NumericDate[SepH$Site.ID == "LR_MainSt_BA"] <- "140911"
+SepH$NumericDate[SepH$Site.ID == "LR_TonyGrove_BA"] <- "140904"
+SepH$NumericDate[SepH$Site.ID == "LR_WaterLab_AA"] <- "140904"
+SepH$NumericDate[SepH$Site.ID == "LR_MainSt_BA"] <- "140911"
