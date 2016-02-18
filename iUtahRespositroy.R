@@ -48,3 +48,10 @@ SepH$NumericDate[SepH$Site.ID == "LR_MainSt_BA"] <- "140911"
 SepH$NumericDate[SepH$Site.ID == "LR_TonyGrove_BA"] <- "140904"
 SepH$NumericDate[SepH$Site.ID == "LR_WaterLab_AA"] <- "140904"
 SepH$NumericDate[SepH$Site.ID == "LR_MainSt_BA"] <- "140911"
+
+SepH$NumericDate[SepH$Site.ID %in% c("2300","3300","MillUp","MillDown","Cudahy")] = "140912"
+
+colnames(SepCN)[c(4,7)] <- c("Site.ID","NumericDate")
+colnames(SepH)[c(6)] <- c("Endmember")
+
+SepCNH = merge(SepCN, SepH, by=c("Endmember","Site.ID", "NumericDate"), Y = TRUE)
