@@ -64,9 +64,9 @@ SepCNfinal = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTA
 SepHfinal = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/SepHfinal.csv")
 
 SepCNfinal = data.frame(SepCNfinal)
-agCN = aggregate(cbind(d15N, d13C) ~ NumericDate + Site.ID, data = SepCNfinal, mean)
+agCN = aggregate(cbind(d15N, d13C) ~ NumericDate + Site.ID + Endmember + Watershed, data = SepCNfinal, mean)
 
-SepCNH = merge(agCN, SepHfinal, by=c("Endmember","Site.ID", "NumericDate"), all.y = TRUE)
+SepCNH = merge(agCN, SepHfinal, by=c("Endmember","Site.ID","NumericDate"), all.y = TRUE)
 
 ### substituting April CN values for Sep CN values of 5400
 SepCNH$d13C[SepCNH$Site.ID == "5400"] <- "-25.86"
