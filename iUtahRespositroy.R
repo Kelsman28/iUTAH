@@ -57,6 +57,14 @@ write.csv(SepH, "SepHfinal.csv")
 colnames(SepCN)[c(4,7)] <- c("Site.ID","NumericDate")
 colnames(SepH)[c(6)] <- c("Endmember")
 
-SepCNH = merge(SepCN, SepH, by=c("Endmember","Site.ID", "NumericDate"), all.y = TRUE)
+## Now need to summarize SepCNfinal to average out duplicate records of CN values for JR and a few pro
 
-## Now need to summarize SepCNfinal to average out duplicate records of CN values for JR and a few provo 
+SepCNfinal = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/SepCNfinal.csv")
+
+SepHfinal = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/SepHfinal.csv")
+
+SepCNfinal = data.frame(SepCNfinal)
+agCN = aggregate(cbind(d15N, d13C) ~ NumericDate + Site.ID + Endmember, data = SepCNfinal, mean)
+
+SepCNH = merge(agCN, SepHfinal, by=c("Endmember","Site.ID", "NumericDate"), all.y = TRUE)
+
