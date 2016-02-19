@@ -71,3 +71,6 @@ SepCNH = merge(agCN, SepHfinal, by=c("Endmember","Site.ID","NumericDate"), all.y
 ### substituting April CN values for Sep CN values of 5400
 SepCNH$d13C[SepCNH$Site.ID == "5400"] <- "-25.86"
 SepCNH$d15N[SepCNH$Site.ID == "5400"] <- "9.95"
+
+SepCNH =  SepCNH[order(SepCNH$Endmember, SepCNH$Watershed.y), ] 
+write.csv(SepCNH, "SepCNH.csv")
