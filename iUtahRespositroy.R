@@ -66,9 +66,16 @@ agCN = aggregate(cbind(d15N, d13C) ~ NumericDate + Site.ID + Endmember + Watersh
 
 SepCNH = merge(agCN, SepHfinal, by=c("Endmember","Site.ID","NumericDate"), all.y = TRUE)
 
+SepCNH = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/SepCNH.csv")
+
 ### substituting April CN values for Sep CN values of 5400
 SepCNH$d13C[SepCNH$Site.ID == "5400"] <- "-25.86"
 SepCNH$d15N[SepCNH$Site.ID == "5400"] <- "9.95"
 
+
+### substituting Sep 2-13 CN values for Sep 2014 CN values of 5400
+SepCNH$d13C[SepCNH$Site.ID == "Cudahy"] <- "-20.96"
+SepCNH$d15N[SepCNH$Site.ID == "Cudahy"] <- "8.34"
+
 SepCNH =  SepCNH[order(SepCNH$Endmember, SepCNH$Watershed.y), ] 
-write.csv(SepCNH, "SepCNH.csv")
+write.csv(SepCNH, "SepCNH2.csv")
