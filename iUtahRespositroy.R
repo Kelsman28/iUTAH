@@ -11,8 +11,6 @@ library(data.table)
 library(stats)
 library(tidyr)
 
-
-
 SepCN = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/SepCN.csv", stringsAsFactors = FALSE)
 SepH = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/SepH.csv", stringsAsFactors = FALSE)
 
