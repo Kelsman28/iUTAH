@@ -77,6 +77,7 @@ SepCNH$d15N[SepCNH$Site.ID == "5400"] <- "9.95"
 SepCNH$d13C[SepCNH$Site.ID == "Cudahy"] <- "-20.96"
 SepCNH$d15N[SepCNH$Site.ID == "Cudahy"] <- "8.34"
 
+### sort ####
 SepCNH =  SepCNH[order(SepCNH$Endmember, SepCNH$Watershed.y), ] 
 write.csv(SepCNH, "SepCNH2.csv")
 
@@ -89,6 +90,17 @@ nit = nit[,c(1:8)]
 
 nitag = aggregate(cbind(d15Nit, d18ONit) ~ NumericDate + SiteID + Watershed, data = nit, mean)
 
+#### I made this in excel from SepCNH2 and C:\Users\Julie Kelso\Dropbox\All Isotopes\iUtahRespository\iUtahRepositoryHydr  ########
+
 final = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/FinalRepository.csv")
 
 all = merge(nitag, final, by=c("SiteID","NumericDate"), all.y = TRUE)
+
+all =  all[order(all$OM_SizeClass, all$Watershed.x, all$NumericDate), ] 
+
+write.csv(all, "all.csv")
+
+DIC = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/DICSepNov2014.csv", stringsAsFactors = FALSE)
+
+colnames(DIC)[c(2,3,8)] <- c("d13DIC", "mgCperml", "NumericDate")
+DIC = DIC[,c(1:8)]
