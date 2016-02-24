@@ -103,4 +103,6 @@ write.csv(all, "all.csv")
 DIC = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/DICSepNov2014.csv", stringsAsFactors = FALSE)
 
 colnames(DIC)[c(2,3,8)] <- c("d13DIC", "mgCperml", "NumericDate")
-DIC = DIC[,c(1:8)]
+DIC = DIC[,c(2,6,8)]
+
+all2 = merge(DIC, all, by=c("SiteID","NumericDate"), all.y = TRUE)
