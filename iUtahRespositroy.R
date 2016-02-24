@@ -35,7 +35,7 @@ SepCN$Date[SepCN$Reach == "PR_LM_BA"] <- "140903"
 SepCN$Date[SepCN$Reach %in% c("RB_1300E","RB_1300S","RB_ARBR_AA","RB_CG_BA","RB_FD_AA", 
                               "RB_KF_BA" ,"RB_RBG_BA","RB_TM")] = "140901"
 
-### Now change to correct dates or SepH
+### Now change to correct dates in SepH
 SepH$NumericDate[SepH$Site.ID %in% c("RB_1300E","RB_1300S","RB_ARBR_AA","RB_CG_BA","RB_FD_AA", "RB_KF_BA" ,"RB_RBG_BA","RB_TM")] = "140901"
 
 SepH$Site.ID[SepH$Site.ID == "PR_SpringCreek600W500N"] <- "PR_SpringCreek"
@@ -61,6 +61,7 @@ SepCNfinal = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTA
 
 SepHfinal = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/SepHfinal.csv")
 
+###############################################
 SepCNfinal = data.frame(SepCNfinal)
 agCN = aggregate(cbind(d15N, d13C) ~ NumericDate + Site.ID + Endmember + Watershed, data = SepCNfinal, mean)
 
@@ -72,10 +73,22 @@ SepCNH = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH pr
 SepCNH$d13C[SepCNH$Site.ID == "5400"] <- "-25.86"
 SepCNH$d15N[SepCNH$Site.ID == "5400"] <- "9.95"
 
-
 ### substituting Sep 2-13 CN values for Sep 2014 CN values of 5400
 SepCNH$d13C[SepCNH$Site.ID == "Cudahy"] <- "-20.96"
 SepCNH$d15N[SepCNH$Site.ID == "Cudahy"] <- "8.34"
 
 SepCNH =  SepCNH[order(SepCNH$Endmember, SepCNH$Watershed.y), ] 
 write.csv(SepCNH, "SepCNH2.csv")
+
+SepCNH2 = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/SepCNH2.csv")
+
+nit = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/Nitrate Sample ID Sheet.csv", stringsAsFactors = FALSE)
+
+colnames(nit)[c(5,6,8)] <- c("d15Nit", "d18ONit", "NumericDate")
+nit = nit[,c(1:8)]
+
+nitag = aggregate(cbind(d15Nit, d18ONit) ~ NumericDate + SiteID + Watershed, data = nit, mean)
+
+final = read.csv("C:/Users/Julie Kelso/Dropbox/iUtah/biweekly sampling/iUTAH proj/iUTAH/iUtahRepositoryIsotopes/iUTAH/FinalRepository.csv")
+
+all = merge(nitag, final, by=c("SiteID","NumericDate"), all.y = TRUE)
