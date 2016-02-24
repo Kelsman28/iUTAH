@@ -103,6 +103,18 @@ write.csv(all, "all.csv")
 DIC = read.csv("C:/Users/Julie Kelso/Dropbox/All Isotopes/iUtahRespository/DICSepNov2014.csv", stringsAsFactors = FALSE)
 
 colnames(DIC)[c(2,3,8)] <- c("d13DIC", "mgCperml", "NumericDate")
-DIC = DIC[,c(2,6,8)]
 
-all2 = merge(DIC, all, by=c("SiteID","NumericDate"), all.y = TRUE)
+DICag = aggregate(d13DIC ~ NumericDate + SiteID + Watershed, data = DIC, mean)
+
+DICag = DICag[,c(1,2,4)]
+
+all2 = merge(DICag, all, by=c("SiteID","NumericDate"), all.y = TRUE)
+
+all2 =  all2[order(all2$OM_SizeClass, all2$Watershed.x, all2$NumericDate), ] 
+
+#### adding values missing from Nov based on Dec #### BAD ###########################3
+all2$d13DIC[all2$SiteID == "LR_CanalGarff" & all2$NumericDate == "141120" ] <- "-8.39"
+all2$d13DIC[all2$SiteID == "RB_KF_BA" & all2$NumericDate == "141118" ] <- "-9.59"
+
+write.csv(all2, "all2.csv")
+
